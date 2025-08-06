@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environment
+virtualenv/
+virtual-env/
+v_env/
+env/
+.venv/
+
+# Databases
+*.db
+*.sqlite3
+
+# Flask specific
+instance/
+.flaskenv
+
+# Operating System
+.DS_Store
+Thumbs.db

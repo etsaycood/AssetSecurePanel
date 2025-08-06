@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主機儀表板 - {{ classification_name }} - {{ purpose_name }} - 清單</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>主機儀表板 - {{ classification_name }} - {{ purpose_name }} - 主機清單</h1>
+        <p>更新天數閾值: {{ days_threshold }} 天</p>
+
+        <table class="host-table">
+            <thead>
+                <tr>
+                    <th>IP 位址</th>
+                    <th>主機名稱</th>
+                    <th>主機用途</th>
+                    <th>分級</th>
+                    <th>防毒更新時間</th>
+                    <th>防毒狀態</th>
+                    <th>Log 更新時間</th>
+                    <th>Log 狀態</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for host in hosts %}
+                <tr>
+                    <td>{{ host.ip_address }}</td>
+                    <td>{{ host.hostname }}</td>
+                    <td>{{ host.purpose }}</td>
+                    <td>{{ host.classification }}</td>
+                    <td>{{ host.antivirus_last_updated if host.antivirus_last_updated else '無資料' }}</td>
+                    <td><div class="status-light {{ host.av_status }}"></div></td>
+                    <td>{{ host.logserver_last_received if host.logserver_last_received else '無資料' }}</td>
+                    <td><div class="status-light {{ host.log_status }}"></div></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p><a href="{{ url_for('purpose_detail', classification_name=classification_name, days=days_threshold) }}">返回用途概覽</a></p>
+    </div>
+</body>
+</html>

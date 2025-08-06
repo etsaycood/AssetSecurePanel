@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主機儀表板 - 分級</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>主機儀表板 - 分級概覽</h1>
+
+        <form method="POST" action="/">
+            <label for="days">更新天數閾值 (預設 7 天):</label>
+            <input type="number" id="days" name="days" value="{{ days_threshold }}" min="1">
+            <button type="submit">確認</button>
+        </form>
+
+        <div class="dashboard-grid">
+            {% for classification, data in classification_statuses.items() %}
+            <a href="{{ url_for('purpose_detail', classification_name=classification, days=days_threshold) }}" class="card {{ data.status }}">
+                <h2>{{ classification }}</h2>
+                <p>總計: {{ data.count }} 台</p>
+                <div class="status-indicator"></div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
