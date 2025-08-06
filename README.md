@@ -18,7 +18,7 @@
 ![分級概覽](images/主機儀表板 - 分級概覽.png)
 
 **主機清單**
-![主機清單]([images/主機清單.png](https://github.com/etsaycood/AssetSecurePanel/blob/main/%E4%B8%BB%E6%A9%9F%E6%B8%85%E5%96%AE.png))
+![主機清單](主機清單.png)
 
 ## 專案結構
 
